@@ -7,21 +7,21 @@
 
 </head>
 <body>
-<div class="topbar">
-    <a th:href="@{/homepage}">Homepage</a>
-    <a th:href="@{/editor}">Editor</a>
-</div>
+    <div class="container">
+        <div class="header">
+            <div class="topbar">
+                <a th:href="@{/homepage}">Homepage</a>
+                <a th:href="@{/editor}">Editor</a>
+            </div>
+        </div>
+        <div class="menu"><a href="#">Link 1</a><br><a href="#">Link 2</a><br><a href="#">Link 3</a></div>
+        <div class="content">
+            <canvas id="CanvasCoord" width="1600" height="1000" style="border:1px solid #000000;">
+            </canvas>
+        </div>
 
-<div class="environment">
-    <h2> Hello World </h2>
-</div>
-
-<div class="elements">
-
-
-</div>
-
-
+        <div class="footer"><h4>Footer</h4></div>
+    </div>
 
 <script th:src="@{/js/editor.js}"></script>
 </body>
