@@ -34,7 +34,7 @@ content.addEventListener("wheel", (event) =>{
         zoom -= 1; // zoom out
     }
 
-    zoom = Math.max(50 ,Math.min(zoom, 300));
+    zoom = Math.max(60 ,Math.min(zoom, 300));
     zooming(zoom);
 });
 
@@ -43,4 +43,14 @@ content.addEventListener("wheel", (event) =>{
 function zooming(newZoom){
     root.style.setProperty("--zoom", newZoom + "%");
 
+}
+
+// send a message to editorRoute in java class, then handle response from server
+function constructPerson(){
+    fetch("/editor",{
+        method: "POST"
+    })
+        .then(response => response.text())
+        .then(data => console.log("Antwort: ", data))
+        .catch(err => console.error(err));
 }

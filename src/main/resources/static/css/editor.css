@@ -21,6 +21,7 @@ body {
 .container div {
 
 }
+/* Header */
 .container div.header {
     grid-area: header;
     background-color: #4d7318;
@@ -44,28 +45,53 @@ body {
     color: black;
 }
 
-
-
+/* Menu */
 .container div.menu {
     grid-area: menu;
     border-style: dashed;
 
 }
 
-
+/*Content Abschnitt*/
 .container div.content {
     grid-area: content;
     border-style: dashed;
-    overflow: auto;
+    overflow: auto ;
 
 }
 #CanvasCoord {
-     width: 1600px;
-     height: 1000px;
      border: 1px solid black;
      zoom: var(--zoom);
  }
+.container .content .coord .card {
+    grid-area: content;
+    border-style: solid;
+    width: 250px;
+    height: 125px;
+    overflow: auto;
 
+}
+.container .content .coord .card{
+    display: grid;
+    grid-template-columns: 90px 10px 1fr;
+
+}
+
+.container .content .coord .card .label {
+    text-align: left;
+}
+
+.container .content .coord .card .colon {
+    text-align: center;
+}
+
+.container .content .coord .card .value {
+    text-align: left;
+}
+
+
+
+    /*/////// footer ///////*/
 .container div.footer {
     grid-area: footer;
     text-align: center;
