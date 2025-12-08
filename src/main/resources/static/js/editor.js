@@ -40,6 +40,7 @@ content.addEventListener("wheel", (event) =>{
 
 
 
+
 function zooming(newZoom){
     root.style.setProperty("--zoom", newZoom + "%");
 
