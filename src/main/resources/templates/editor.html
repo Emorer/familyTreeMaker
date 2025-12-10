@@ -14,28 +14,27 @@
                 <a th:href="@{/editor}">Editor</a>
             </div>
         </div>
-        <div class="menu"><a href="#">Link 1</a><br><a href="#">Link 2</a><br><a href="#">Link 3</a><br>
-            <button onclick="constructPerson()">Construct Person</button>
+        <div class="menu"><a href="#">Data Analysis</a><br><a href="#">Map</a><br><a href="#">Export</a><br>
+            <button onclick="openNewPersonForm()">New Person</button>
         </div>
         <div class="content">
-            <div>
-                <form class="formPopup" id="constructForm">
-
+            <div class="formPopup" id="constructForm">
+                <form class="formContainer">
+                    <label>Name</label>
+                    <input id="name" type="text" name="name" required>
+                    <label>Surname</label>
+                    <input id="surname" type="text" name="surname" required>
+                    <label>Age</label>
+                    <input id="age" type="number" name="age" required>
+                    <label>Birthyear</label>
+                    <input id="birthyear" type="number" name="birthyear" required>
+                    <label>Place of Birth</label>
+                    <input id="place" type="text" name="place" required>
+                    <button type="button" class="btn cancel" onclick="abortNewPerson()">Abort</button>
+                    <button type="submit">Create Person</button>
                 </form>
             </div>
-            <div class="coord">       <!--koordinaten system -->
-                <div class="card">
-                    <div class="label">Name</div><div class="colon">:</div><div class="value"><span th:text="${name}"></span></div>
-                    <div class="label">Surname</div><div class="colon">:</div><div class="value"><span th:text="${surname}"></span></div>
-                    <div class="label">Age</div><div class="colon">:</div><div class="value"><span th:text="${age}"></span></div>
-                    <div class="label">Birthyear</div><div class="colon">:</div><div class="value"><span th:text="${birthyear}"></span></div>
-                    <div class="label">Place of Birth</div><div class="colon">:</div><div class="value"><span th:text="${place}"></span></div>
-                </div>
-            </div>
-
-            <canvas id="CanvasCoord" width="1600" height="1000" style="border:1px solid #000000;">
-
-            </canvas>
+            <div class="coord" id="cardContainer"> <!--koordinaten system --> </div>
         </div>
 
         <div class="footer"><h4>Footer</h4></div>

@@ -56,19 +56,48 @@ body {
 .container div.content {
     grid-area: content;
     border-style: dashed;
-    overflow: auto ;
+    overflow: auto;
 
 }
-#CanvasCoord {
-     border: 1px solid black;
-     zoom: var(--zoom);
- }
+
+.container .content .formPopup{
+    display: none;
+    background: beige;
+    border:  3px black;
+    border-style: solid;
+    border-radius: 8px;
+    position: fixed;
+    bottom: 50px;
+    right: 60px;
+    width: 280px;
+    padding: 5px;
+}
+
+.container .content .formPopup .formContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px 10px;
+}
+.container .content .coord {
+    height: 1000px; /* das als variablen ersetzen */
+    width: 1600px;
+    background-image:
+            linear-gradient(to right, #eee 1px, transparent 1px),
+            linear-gradient(to bottom, #eee 1px, transparent 1px);
+    background-size: 25px 25px;
+    zoom: var(--zoom);
+}
 .container .content .coord .card {
     grid-area: content;
     border-style: solid;
     width: 250px;
     height: 125px;
     overflow: auto;
+    background: beige;
+    border-radius: 8px;
+    padding: 5px;
+    position: absolute;
+    cursor: move;
 
 }
 .container .content .coord .card{
