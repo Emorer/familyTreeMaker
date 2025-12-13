@@ -1,5 +1,9 @@
 :root {
     --zoom: 100%;
+    --XChange: 0;
+    --YChange: 0;
+    --coordHeight: 1000px;
+    --coordWidth: 1600px;
 }
 
 body {
@@ -57,6 +61,7 @@ body {
     grid-area: content;
     border-style: dashed;
     overflow: auto;
+    position: relative;
 
 }
 
@@ -71,33 +76,39 @@ body {
     right: 60px;
     width: 280px;
     padding: 5px;
+    z-index: 10;
 }
 
 .container .content .formPopup .formContainer {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 5px 10px;
+
 }
 .container .content .coord {
-    height: 1000px; /* das als variablen ersetzen */
-    width: 1600px;
+    height: var(--coordHeight); /* das als variablen ersetzen */
+    width: var(--coordWidth);
     background-image:
-            linear-gradient(to right, #eee 1px, transparent 1px),
-            linear-gradient(to bottom, #eee 1px, transparent 1px);
+            linear-gradient(to right, #ccc 1px, transparent 1px),
+            linear-gradient(to bottom, #ccc 1px, transparent 1px);
     background-size: 25px 25px;
-    zoom: var(--zoom);
+    transform: translate(var(--XChange), var(--YChange)) scale(var(--zoom)) ;
+    transform-origin: 0 0;
+
+
 }
 .container .content .coord .card {
     grid-area: content;
     border-style: solid;
-    width: 250px;
-    height: 125px;
+    width: 187.5px;
+    height: 87.5px;
     overflow: auto;
     background: beige;
     border-radius: 8px;
     padding: 5px;
     position: absolute;
     cursor: move;
+    font-size: 11px;
 
 }
 .container .content .coord .card{

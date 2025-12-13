@@ -1,27 +1,42 @@
 const root = document.documentElement;
+const GRID_SIZE = 25;
+let panX = 0;
+let panY = 0;
+let zoom = 100;
+let cardContainer = document.getElementById("cardContainer");
+let isCardMoving = false;
+let coordHeight = 1000; // y koordinaten
+let coordWidth = 1600;  // x koordinaten
 
 
 // zooming
-const content = document.querySelector(".container div.content");
-let zoom = 100;
-const zoomString = getComputedStyle(root).getPropertyValue("--zoom"); // current zoom
-content.addEventListener("wheel", (event) =>{
-    event.preventDefault();
-        if (event.deltaY < 0) {
+cardContainer.addEventListener("wheel", zoomingStart)
+
+function zoomingStart(e){
+    e.preventDefault();
+    if (e.deltaY < 0) {
         zoom += 1;    //zoom in
     } else {
         zoom -= 1; // zoom out
     }
 
-    zoom = Math.max(60 ,Math.min(zoom, 300));
+    zoom = Math.max(10 ,Math.min(zoom, 400));
     zooming(zoom);
-});
+    function zooming(newZoom){
+        root.style.setProperty("--zoom", newZoom + "%");
 
-
-function zooming(newZoom){
-    root.style.setProperty("--zoom", newZoom + "%");
-
+    }
 }
+
+function getScale() {
+    return zoom / 100;
+}
+
+
+//////////////////////////////////////////////////
+////// Card Bewegung /////////////////////////////
+/////////////////////////////////////////////////
+
 
 //karte bewegen
 //wenn die maus über einer card klasse gedrückt wird führe
@@ -30,29 +45,111 @@ function makeDraggable(element) {
     let offsetY = 0;
 
 
-
     element.addEventListener("pointerdown", startDrag);
 
     function startDrag(e) {
         e.preventDefault();
+        isCardMoving = true;
+        const scale = getScale();
 
-        offsetX = e.clientX - element.offsetLeft;
-        offsetY = e.clientY - element.offsetTop;
+        offsetX = (e.clientX / scale) - element.offsetLeft;
+        offsetY = (e.clientY / scale) - element.offsetTop;
 
         document.addEventListener("pointermove", drag);
         document.addEventListener("pointerup", stopDrag);
     }
 
     function drag(e) {
-        element.style.left = (e.clientX - offsetX) + "px";
-        element.style.top = (e.clientY - offsetY) + "px";
+        const scale = getScale();
+
+        let x = (e.clientX / scale) - offsetX;
+        let y = (e.clientY / scale) - offsetY;
+        x = Math.round(x / GRID_SIZE) * GRID_SIZE;
+        y = Math.round(y / GRID_SIZE) * GRID_SIZE;
+        console.log("test ets x koord ")
+
+        checkGridBoundaries(x, y)
+
+
+        console.log(x);
+
+        element.style.left = x + "px";
+        element.style.top = y + "px";
     }
 
     function stopDrag() {
         document.removeEventListener("pointermove", drag);
         document.removeEventListener("pointerup", stopDrag);
+        isCardMoving = false;
     }
 }
+
+function checkGridBoundaries(x, y){
+    if (x > coordWidth){
+        coordWidth += 1600;
+        root.style.setProperty("--coordWidth", coordWidth + "px");
+
+    }
+    if (y > coordHeight){
+        coordHeight += 1000;
+        root.style.setProperty("--coordHeight", coordHeight + "px");
+    }
+}
+
+
+/////////////////////////////////////////////////////
+///// Panning the Grid system ///////////////////////
+/////////////////////////////////////////////////////
+cardContainer.addEventListener("contextmenu", e => e.preventDefault());
+cardContainer.addEventListener("pointerdown", StartPanning);
+
+function StartPanning(event){
+    event.preventDefault();
+    if (event.button !== 2){
+        return
+    }
+    if(isCardMoving){
+        return;
+    }
+
+    let x = event.clientX;
+    let y = event.clientY;
+    document.addEventListener("pointermove", panning)
+    document.addEventListener("pointerup", stopPanning, { once: true })
+
+    function panning(event){
+
+        panX += event.clientX - x;
+        panY  += event.clientY - y;
+
+        x = event.clientX;
+        y = event.clientY;
+
+        root.style.setProperty("--XChange", panX + "px");
+        root.style.setProperty("--YChange", panY + "px");
+
+
+    }
+    function stopPanning(){
+        document.removeEventListener("pointermove", panning)
+        document.removeEventListener("pointerup", stopPanning)
+
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // wird aufgerufen wenn man eine Neune person erstellt und dann die Form submited
 document.getElementById("constructForm").addEventListener("submit", function(event){
