@@ -4,6 +4,7 @@ let panX = 0;
 let panY = 0;
 let zoom = 100;
 let cardContainer = document.getElementById("cardContainer");
+let cardOption = document.getElementById("cardOption");
 let isCardMoving = false;
 let coordHeight = 1000; // y koordinaten
 let coordWidth = 1600;  // x koordinaten
@@ -34,6 +35,19 @@ function getScale() {
 
 
 //////////////////////////////////////////////////
+////// Card Optionen /////////////////////////////
+/////////////////////////////////////////////////
+
+function cardOptions(e){
+    e.preventDefault();
+
+    console.log("test opt")
+    cardOption.style.display = "block"
+    cardOption.style.top = e.clientY + "px";
+    cardOption.style.left = e.clientX + "px";
+    // open options for the card like add spouse, child, parent
+}
+//////////////////////////////////////////////////
 ////// Card Bewegung /////////////////////////////
 /////////////////////////////////////////////////
 
@@ -45,10 +59,16 @@ function makeDraggable(element) {
     let offsetY = 0;
 
 
+    //cardContainer.addEventListener("contextmenu", e => e.preventDefault());
+    element.addEventListener("contextmenu", cardOptions);
     element.addEventListener("pointerdown", startDrag);
+
 
     function startDrag(e) {
         e.preventDefault();
+        if (e.button !== 0){
+            return
+        }
         isCardMoving = true;
         const scale = getScale();
 
@@ -136,18 +156,6 @@ function StartPanning(event){
 
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

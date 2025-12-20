@@ -10,6 +10,25 @@ body {
     margin: 0;
     padding: 0;
 }
+.cardOptions{
+    display: none;
+    position:absolute;
+    background: #f9f9f9;
+    color: #f9f9f9;
+    padding: 5px;
+    z-index: 11;
+    border-radius: 8px;
+
+}
+.cardOptions button{
+    color: black;
+    background: #f9f9f9;
+    border:none;
+}
+.cardOptions button:hover{
+    background: #e9e9e9;
+
+}
 
 .container {
     display: grid;
@@ -128,7 +147,6 @@ body {
 .container .content .coord .card .value {
     text-align: left;
 }
-
 
 
     /*/////// footer ///////*/
