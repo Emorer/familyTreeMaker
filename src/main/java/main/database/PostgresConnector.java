@@ -40,28 +40,9 @@ public class PostgresConnector {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        try (Connection conn  = DriverManager.getConnection(url, user, password)) {
-            System.out.println("Verbindung erfolgreich!");
 
-            // Tabelle auslesen
-            String query = "SELECT * FROM person";
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(query);
-
-            while (rs.next()) {
-                System.out.println(
-                        rs.getInt("id") + " | " +
-                                rs.getString("name") + " | " +
-                                rs.getString("surname") + " | " +
-                                rs.getInt("age")
-                );
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
-    public Connection getConnection() {
+    public Connection getConnectionToPostgres() {
         return conn;
     }
 

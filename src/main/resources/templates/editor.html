@@ -20,14 +20,37 @@
                 <a th:href="@{/editor}">Editor</a>
             </div>
         </div>
-        <div class="menu"><a href="#">Data Analysis</a><br><a href="#">Map</a><br><a href="#">Export</a><br>
-            <button onclick="openNewPersonForm()">New Person</button>
+        <div class="menu">
+            <div class="navbarTree" id="navbarTree">
+                <div class="treeForm" id="treeForm">
+                    <form class="treeFormContainer">
+                        <label>Tree name</label>
+                        <input id="treeName" type="text" name="name" required>
+
+                        <button type="button" class="btn cancel" onclick="abortNewTree()">Abort</button>
+                        <button type="submit">Create Person</button>
+                    </form>
+                </div>
+                <button onclick="openNewTreeForm()">Create New Tree</button>
+                <div class="allTrees" id="allTrees">
+                    <ul>
+                        <li><button>Example</button></li>
+                    </ul>
+                </div>
+
+
+            </div><br>
+            <button onclick="openNewPersonForm()">New Person</button> <br>
+            <a href="#">Data Analysis</a><br>
+            <a href="#">Map</a><br>
+            <a href="#">Export</a><br>
+
         </div>
         <div class="content">
             <div class="formPopup" id="constructForm">
                 <form class="formContainer">
                     <label>Name</label>
-                    <input id="name" type="text" name="name" required>
+                    <input id="name" type="text" name="name"required>
                     <label>Surname</label>
                     <input id="surname" type="text" name="surname" required>
                     <label>Age</label>
@@ -49,5 +72,9 @@
 
 <script th:src="@{/js/editor.js}"></script>
 <script th:src="@{/js/editorLinks.js}"></script>
+    <script th:src="@{/js/editorDatabasePosition.js}"></script>
+<script th:src="@{/js/editorCreateTree.js}"></script>
+<script th:src="@{/js/getTree.js}"></script>
+
 </body>
 </html>

@@ -75,6 +75,40 @@ body {
 
 }
 
+.container .menu .navbarTree{
+    padding: 5px;
+    border: black;
+    border-style: solid;
+
+}
+
+.container .menu .navbarTree button{
+    border: none;
+    color: #000000;
+}
+.container .menu .navbarTree button:hover{
+    background: #756565;
+}
+
+.container .menu .navbarTree .treeForm {
+    display: none;
+    background: beige;
+    border:  3px black;
+    border-style: solid;
+    border-radius: 8px;
+    position: fixed;
+    top: 100px;
+    left: 600px;
+    padding: 5px;
+    z-index: 10;
+}
+.container .menu .navbarTree .treeForm .treeFormContainer{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px 10px;
+}
+
+
 /*Content Abschnitt*/
 .container div.content {
     grid-area: content;

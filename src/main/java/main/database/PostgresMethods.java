@@ -18,7 +18,8 @@ public class PostgresMethods {
 
 
     public void initConnection(PostgresConnector postgresConnector) {
-        conn = postgresConnector.getConnection();
+        conn = postgresConnector.getConnectionToPostgres();
 
     }
+
 }

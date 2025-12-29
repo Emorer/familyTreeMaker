@@ -1,21 +1,28 @@
 package main.Cards;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
+@Entity
 public class Person {
+    @Id
+    private int id;
     private String name;
     private String surname; // nachname
     private int age; // alter automatisch berechnen.
     private int birth;
     private String placeOfBirth;
-    private String Gender;
-    private int id;
     private boolean alive;
+    private String Gender;
 
     //ab hier sind die eigenschaften die nicht angezeigt werden
-    private int level; // wo in der hieraschie ist eine person
-    private Boolean core;
     private int posX;
     private int posY;
+
+    private int level; // wo in der hieraschie ist eine person
+    private Boolean core;
     private String Link;
 
 
@@ -32,6 +39,10 @@ public class Person {
     public void addAge(){}
     public void addBirth(){}
     public void addGender(){}
+
+    public int getId() {
+        return id;
+    }
 
     public String getName() {
         return name;
@@ -53,13 +64,17 @@ public class Person {
         return placeOfBirth;
     }
 
+    public int getPosX() {
+        return posX;
+    }
+    public int getPosY() {
+        return posY;
+    }
+
     public String getGender() {
         return Gender;
     }
 
-    public int getId() {
-        return id;
-    }
 
     public void setName(String name) {
         this.name = name;
@@ -79,6 +94,12 @@ public class Person {
 
     public void setPlaceOfBirth(String placeOfBirth) {
         this.placeOfBirth = placeOfBirth;
+    }
+    public void setPosX(int posX) {
+        this.posX = posX;
+    }
+    public void setPosY(int posY) {
+        this.posY = posY;
     }
 
     public void setGender(String gender) {
