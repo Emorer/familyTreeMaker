@@ -1,13 +1,24 @@
 // diese file holt alle von einer bestimmten tabelle (datenbank) alle karten und platziert sie an den Positionen
 
-//hier noch welche datenbank gerade benutzt wird und welche person gerade benutzt (cookies)
-function getTree(){
+// noch welche id gerade benutzt wird
+function getTree(button){
     // check if already loaded
+    const treeId =  button.closest(".tree").dataset.treeId;
+    console.log(treeId + "die treeid")
+
+    if (treeId === currentTreeID){// check if tree is already loaded
+        return
+    }
+    else{
+        setCurrentTreeID(treeId)
+    }
+
     document.getElementById("cardContainer").innerHTML = "";
-    let treeName = "person";
+
+
 
     const treeData= {
-        treeName : treeName
+        id : treeId
     };
     fetch("/editorTree", {
         method: "PUT",
@@ -22,8 +33,6 @@ function getTree(){
             tree.forEach(person => {
                 insertPerson(person);
             });
-
-
 
         })
 

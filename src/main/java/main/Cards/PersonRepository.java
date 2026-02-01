@@ -26,12 +26,13 @@ public class PersonRepository {
     }
 
     // hol alle Personen in der Datenbank
-    public List<Person> findAll() { // alle Dokumente Finden. sollte man am starten ausführen um alle Daten zu fetchen
-        String sql = "SELECT id, name, surname, age, birth, placeofbirth, posX, posY  FROM test";
+    public List<Person> findAll(int treeID) { // alle Dokumente Finden. sollte man am starten ausführen um alle Daten zu fetchen
+        String sql = "SELECT id, name, surname, age, birth, placeofbirth, posX, posY  FROM test WHERE treeid = ?";
 
+        System.out.println("treeID beim getten: " + treeID);
         return jdbcTemplate.query(
                 sql,
-                (rs, rowNum) ->{
+                (rs, rowNum) ->{ // erstellt
                     Person p = new Person();
                     p.setId(rs.getInt("id"));
                     p.setName(rs.getString("name"));
@@ -42,13 +43,15 @@ public class PersonRepository {
                     p.setPosX(rs.getInt("posX"));
                     p.setPosY(rs.getInt("posY"));
                     return p;
-                }
+                },
+                treeID
         );
     }
     // füge eine Persone in die Datenbank ein
     public void insert(Person person) {
-        String sql = "INSERT INTO test (id, name, surname, age, birth, placeOfBirth) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO test (id, name, surname, age, birth, placeOfBirth, treeId) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
+        System.out.println("die TreeID: " + person.getTreeId());
         jdbcTemplate.update(
                 sql,
                 person.getId(),
@@ -56,9 +59,25 @@ public class PersonRepository {
                 person.getSurname(),
                 person.getAge(),
                 person.getBirth(),
-                person.getPlaceOfBirth()
+                person.getPlaceOfBirth(),
+                person.getTreeId()
                 //person.getAlive();
         );
+
+    }
+
+
+    public void InsertTree(Tree tree, String uuid) {
+        String sql = "Insert INTO trees (id, name, owneruid) VALUES (?, ?, ?)";
+
+        jdbcTemplate.update(
+                sql,
+                tree.getId(),
+                tree.getName(),
+                uuid
+
+        );
+
 
     }
     public void update(Person person) {
@@ -69,9 +88,25 @@ public class PersonRepository {
     }
 
 
+    // get all trees that this user has created
+    public List<Tree> findByOwnerUuid(String uuid){
+        String sql = "SELECT id, name FROM trees WHERE owneruid = ?";
+        return jdbcTemplate.query(
+                sql,
+                (rs, rowNum) ->{ // erstellt
+                    Tree tree = new Tree();
+                    tree.setId(rs.getInt("id"));
+                    tree.setName(rs.getString("name"));
+                    return tree;
+                },
+                uuid
+
+        );
+    }
+
     public void updatePosition(Person person) {
-        System.out.println("test");
-        String sql = "UPDATE test SET posx = ?, posy = ? WHERE id = ?";
+
+        String sql = "UPDATE test SET posx = ?, posy = ? WHERE id = ?"; // todo Change name of database
         jdbcTemplate.update(sql,
                 person.getPosX(),
                 person.getPosY(),
@@ -84,5 +119,10 @@ public class PersonRepository {
         return jdbcTemplate.queryForObject(sql, Integer.class);
 
 
+    }
+    public int getMaxTreeId(){
+        String sql = "SELECT MAX(id) FROM trees";
+
+        return jdbcTemplate.queryForObject(sql, Integer.class);
     }
 }

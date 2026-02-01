@@ -9,6 +9,7 @@ import jakarta.persistence.Id;
 public class Person {
     @Id
     private int id;
+    private int treeId;
     private String name;
     private String surname; // nachname
     private int age; // alter automatisch berechnen.
@@ -42,6 +43,9 @@ public class Person {
 
     public int getId() {
         return id;
+    }
+    public int getTreeId() {
+        return treeId;
     }
 
     public String getName() {
@@ -107,6 +111,10 @@ public class Person {
     }
     public void setId(int id) {
         this.id = id;
+    }
+
+    public void setTreeId(int treeId) {
+        this.treeId = treeId;
     }
     public void addSpouse(){}
     public void addParent(){}

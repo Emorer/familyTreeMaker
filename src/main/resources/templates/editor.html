@@ -28,7 +28,7 @@
                         <input id="treeName" type="text" name="name" required>
 
                         <button type="button" class="btn cancel" onclick="abortNewTree()">Abort</button>
-                        <button type="submit">Create Person</button>
+                        <button type="submit">Create Tree</button>
                     </form>
                 </div>
                 <button onclick="openNewTreeForm()">Create New Tree</button>
@@ -70,10 +70,26 @@
         <div class="footer"><h4>Footer</h4></div>
     </div>
 
+
+
+
+
 <script th:src="@{/js/editor.js}"></script>
 <script th:src="@{/js/editorLinks.js}"></script>
     <script th:src="@{/js/editorDatabasePosition.js}"></script>
 <script th:src="@{/js/editorCreateTree.js}"></script>
+
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        var trees = /*[[${trees}]]*/ [];
+        console.log("Geladene Bäume:", trees);
+        // Einmalige Initialisierung
+        innitTrees(trees);
+
+
+        /*]]>*/
+    </script>
+
 <script th:src="@{/js/getTree.js}"></script>
 
 </body>

@@ -1,4 +1,6 @@
 const root = document.documentElement;
+let currentTreeID; // holds the value of the current tree where we edit i.e integer
+
 const GRID_SIZE = 25;
 let panX = 0;
 let panY = 0;
@@ -160,7 +162,6 @@ function StartPanning(event){
 }
 
 
-
 // wird aufgerufen wenn man eine Neune person erstellt und dann die Form submited
 document.getElementById("constructForm").addEventListener("submit", function(event){
     event.preventDefault();
@@ -178,6 +179,7 @@ function constructPerson() {
     let cardId;
 
     const person = {
+        treeId: currentTreeID,
         name: name,
         surname: surname,
         age: age,
@@ -241,4 +243,8 @@ function openNewPersonForm() {
 
 function abortNewPerson() {
     document.getElementById("constructForm").style.display = "none";
+}
+
+function setCurrentTreeID(id){
+    currentTreeID = id;
 }
