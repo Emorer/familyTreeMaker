@@ -2,20 +2,43 @@
 
 function addSpouse(){
 
-    cardOption.style.display ="none";
 }
 
 function addParent(){
-    cardOption.style.display ="none";
+
 
 }
 
 function connectToSpouse(){
-    cardOption.style.display ="none";
+
 
 
 }
 function connectToParent(){
-    cardOption.style.display ="none";
+
+}
+
+function deleteCard() {
+    if (selectedCard) {
+        selectedCard.remove();
+
+        const data = {
+            id: parseInt(selectedCard.id),
+        };
+        fetch("/deleteCard", {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        })
+            .then(response => response.text())
+            .then(data => console.log("Antwort: ", data))
+            .catch(err => console.error(err));
+
+
+       selectedCard = null;
+   }
+
 
 }

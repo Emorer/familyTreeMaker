@@ -83,8 +83,10 @@ public class PersonRepository {
     public void update(Person person) {
 
     }
-    public void delete(int id) {
+    public void deleteCard(int id) {
 
+        String sql = "DELETE FROM test WHERE id = ?";
+        jdbcTemplate.update(sql, id);
     }
 
 
@@ -120,6 +122,7 @@ public class PersonRepository {
 
 
     }
+    //hol die maximale Tree id in der trees datenbank
     public int getMaxTreeId(){
         String sql = "SELECT MAX(id) FROM trees";
 

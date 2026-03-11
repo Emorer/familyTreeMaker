@@ -10,7 +10,12 @@ let cardOption = document.getElementById("cardOption");
 let isCardMoving = false;
 let coordHeight = 1000; // y koordinaten
 let coordWidth = 1600;  // x koordinaten
+let selectedCard = null;
 
+
+document.addEventListener("click", () => {
+    cardOption.style.display = "none";
+});
 
 // zooming
 cardContainer.addEventListener("wheel", zoomingStart)
@@ -43,6 +48,7 @@ function getScale() {
 function cardOptions(e){
     e.preventDefault();
 
+    selectedCard = e.currentTarget;
     console.log("test opt")
     cardOption.style.display = "block"
     cardOption.style.top = e.clientY + "px";

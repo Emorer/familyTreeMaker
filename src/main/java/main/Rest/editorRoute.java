@@ -123,6 +123,19 @@ public class editorRoute{
         return  "ok";
     }
 
+    // sets the Position of a card in the class not in the database
+    @PutMapping("/deleteCard")
+    @ResponseBody
+    public String getCardId(@RequestBody Map<String, Object> card){
+        int id   = (Integer) card.get("id");
+        allPersons.remove(id);
+
+        personRepository.deleteCard(id);
+
+
+        return  "ok";
+    }
+
     // gets the every person and displays it on canvas
     @PutMapping("/editorTree")
     @ResponseBody
