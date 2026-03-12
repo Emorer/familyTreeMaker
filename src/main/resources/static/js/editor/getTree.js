@@ -4,7 +4,7 @@
 function getTree(button){
     // check if already loaded
     const treeId =  button.closest(".tree").dataset.treeId;
-    console.log(treeId + "die treeid")
+
 
     if (treeId === currentTreeID){// check if tree is already loaded
         return
@@ -12,6 +12,8 @@ function getTree(button){
     else{
         setCurrentTreeID(treeId)
     }
+
+
 
     document.getElementById("cardContainer").innerHTML = "";
 

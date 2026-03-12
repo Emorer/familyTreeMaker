@@ -89,6 +89,19 @@ public class PersonRepository {
         jdbcTemplate.update(sql, id);
     }
 
+    public void deleteTree(int treeId) {
+        String sql = "DELETE FROM trees WHERE id = ?";
+        jdbcTemplate.update(sql, treeId);
+        deleteAllCardsFromTree(treeId);
+    }
+
+    public void deleteAllCardsFromTree(int treeId) {
+        String sql = "DELETE FROM test WHERE treeid  = ?";
+        jdbcTemplate.update(sql, treeId);
+    }
+
+
+
 
     // get all trees that this user has created
     public List<Tree> findByOwnerUuid(String uuid){

@@ -136,6 +136,20 @@ public class editorRoute{
         return  "ok";
     }
 
+    // sets the Position of a card in the class not in the database
+    @PutMapping("/deleteTree")
+    @ResponseBody
+    public String getTreeId(@RequestBody Tree tree){
+        int id   = tree.getId();
+
+
+
+        personRepository.deleteTree(id);
+
+
+        return  "ok";
+    }
+
     // gets the every person and displays it on canvas
     @PutMapping("/editorTree")
     @ResponseBody

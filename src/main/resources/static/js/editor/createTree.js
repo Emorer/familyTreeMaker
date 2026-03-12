@@ -36,7 +36,7 @@ function addHTMLElement(name, id){
     allTrees.querySelector("ul").appendChild(tree);
     treeForm.style.display = "none";
     document.getElementById("treeName").value = "";
-    setCurrentTreeID(id);
+
     cardContainer.innerHTML = "";
 
 }
@@ -59,6 +59,7 @@ function sendTreeToServer(treeName){
         .then(data => {
 
             treeId = parseInt(data);
+            setCurrentTreeID(treeId);
             addHTMLElement(treeName, treeId);
 
         })

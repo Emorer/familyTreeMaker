@@ -32,7 +32,7 @@
                         <button type="submit">Create Tree</button>
                     </form>
                 </div>
-                <button onclick="openNewTreeForm()">Create New Tree</button>
+                <button onclick="openNewTreeForm()">Create New Tree</button>  <button onclick="deleteTree()"> Delete Current Tree</button>
                 <div class="allTrees" id="allTrees">
                     <ul>
                         <li><button>Example</button></li>
@@ -73,12 +73,21 @@
 
 
 
-
-
-<script th:src="@{/js/editor.js}"></script>
-<script th:src="@{/js/editorLinks.js}"></script>
-    <script th:src="@{/js/editorDatabasePosition.js}"></script>
-<script th:src="@{/js/editorCreateTree.js}"></script>
+    <script src="
+https://cdn.jsdelivr.net/npm/sweetalert2@11.26.22/dist/sweetalert2.all.min.js
+"></script>
+    <link href="
+https://cdn.jsdelivr.net/npm/sweetalert2@11.26.22/dist/sweetalert2.min.css
+" rel="stylesheet">
+<script th:src="@{/js/editor/editor.js}"></script>
+    <script th:src="@{/js/editor/zoom.js}"></script>
+    <script th:src="@{/js/editor/cardMovement.js}"></script>
+    <script th:src="@{/js/editor/panning.js}"></script>
+    <script th:src="@{/js/editor/createCard.js}"></script>
+    <script th:src="@{/js/editor/createTree.js}"></script>
+<script th:src="@{/js/editor/cardOptions.js}"></script>
+    <script th:src="@{/js/editor/databasePosition.js}"></script>
+    <script th:src="@{/js/editor/treeOptions.js}"></script>
 
     <script th:inline="javascript">
         /*<![CDATA[*/
@@ -91,7 +100,7 @@
         /*]]>*/
     </script>
 
-<script th:src="@{/js/getTree.js}"></script>
+<script th:src="@{/js/editor/getTree.js}"></script>
 
 </body>
 </html>
