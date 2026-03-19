@@ -80,7 +80,17 @@ public class PersonRepository {
 
 
     }
-    public void update(Person person) {
+    public void updateCard(Person person) {
+        String sql = "UPDATE test Set name = ?, surname = ?, age = ?, birth = ?, placeofbirth = ? Where id = ?";
+        jdbcTemplate.update(sql,
+                person.getName(),
+                person.getSurname(),
+                person.getAge(),
+                person.getBirth(),
+                person.getPlaceOfBirth(),
+                person.getId()
+        );
+
 
     }
     public void deleteCard(int id) {

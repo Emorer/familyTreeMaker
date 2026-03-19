@@ -13,7 +13,8 @@ let cardOption = document.getElementById("cardOption");
 let isCardMoving = false;
 let coordHeight = 1000; // y koordinaten
 let coordWidth = 1600;  // x koordinaten
-
+let isMultiSelect = false;
+let selectedCards = [];
 
 // mach die card optionen aus also
 document.addEventListener("click", () => {

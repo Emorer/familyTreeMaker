@@ -7,11 +7,28 @@
 
 </head>
 <body>
+
+<div class="formPopup" id="editForm">
+    <form class="editFormContainer">
+        <label>Name</label>
+        <input  type="text" name="name"required>
+        <label>Surname</label>
+        <input type="text" name="surname" required>
+        <label>Age</label>
+        <input  type="number" name="age" required>
+        <label>Birthyear</label>
+        <input  type="number" name="birthyear" required>
+        <label>Place of Birth</label>
+        <input type="text" name="place" required>
+        <button type="button" class="btn cancel" onclick="abortEditPerson()">Cancel</button>
+        <button type="submit">Save Changes</button>
+    </form>
+</div>
     <div class="cardOptions" id="cardOption">
         <button onclick="addSpouse()">Add Spouse</button> <br>
-        <button onclick="addParent()">Add Parent</button> <br>
         <button onclick="connectToSpouse()">Connect to Spouse</button> <br>
         <button onclick="connectToParent()">Connect to Parent</button> <br>
+        <button onclick="openEditForm()">Edit Card</button> <br>
         <button onclick="deleteCard()">Delete Card</button>
     </div>
     <div class="container">
@@ -64,7 +81,8 @@
                     <button type="submit">Create Person</button>
                 </form>
             </div>
-            <div class="coord" id="cardContainer"> <!--koordinaten system --> </div>
+            <div class="coord" id="cardContainer"> <!--koordinaten system --></div>
+            <div class="multiBox" id="multiBox"></div>
 
         </div>
 
@@ -88,6 +106,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.26.22/dist/sweetalert2.min.css
 <script th:src="@{/js/editor/cardOptions.js}"></script>
     <script th:src="@{/js/editor/databasePosition.js}"></script>
     <script th:src="@{/js/editor/treeOptions.js}"></script>
+    <script th:src="@{/js/editor/multiselect.js}"></script>
 
     <script th:inline="javascript">
         /*<![CDATA[*/

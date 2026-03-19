@@ -137,6 +137,15 @@ public class editorRoute{
     }
 
     // sets the Position of a card in the class not in the database
+    @PutMapping("/editCard")
+    @ResponseBody
+    public String editCard(@RequestBody Person person){
+        personRepository.updateCard(person);
+
+        return  "ok";
+    }
+
+    // sets the Position of a card in the class not in the database
     @PutMapping("/deleteTree")
     @ResponseBody
     public String getTreeId(@RequestBody Tree tree){
@@ -167,6 +176,7 @@ public class editorRoute{
 
         return wholeTree;
     }
+
 
     public void addToMap(Person person){
         allPersons.put(person.getId(), person);

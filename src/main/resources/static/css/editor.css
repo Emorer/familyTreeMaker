@@ -4,6 +4,10 @@
     --YChange: 0;
     --coordHeight: 1000px;
     --coordWidth: 1600px;
+
+    --multiboxPos: 0;
+    --multiboxWidth: 100px;
+    --multiboxHeight: 100px;
 }
 
 body {
@@ -27,6 +31,30 @@ body {
 }
 .cardOptions button:hover{
     background: #e9e9e9;
+
+}
+
+.formPopup{
+    display: none;
+    background: beige;
+    border:  3px black;
+    border-style: solid;
+    border-radius: 8px;
+    position: fixed;
+    max-width: 100vw;
+    max-height: 100dvh;
+    margin: auto;
+    inset: 0;
+    width: 280px;
+    height: 150px;
+    padding: 5px;
+    z-index: 10;
+}
+
+.formPopup .editFormContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px 10px;
 
 }
 
@@ -147,6 +175,21 @@ body {
     background-size: 25px 25px;
     transform: translate(var(--XChange), var(--YChange)) scale(var(--zoom)) ;
     transform-origin: 0 0;
+
+
+}
+
+.container .content .multiBox{
+    height: var(--multiboxHeight);
+    width: var(--multiboxWidth);
+    border-style: solid;
+    border-width: 2px;
+    border-color: blue;
+    position: absolute;
+    opacity: 0.25;
+    background-color: lightblue;
+    z-index: 10;
+    display: none;
 
 
 }

@@ -23,6 +23,8 @@ function cardOptions(e){
 function makeDraggable(element) {
     let offsetX = 0;
     let offsetY = 0;
+    let dragStartX;
+    let dragStartY;
 
 
     //cardContainer.addEventListener("contextmenu", e => e.preventDefault());
@@ -36,10 +38,26 @@ function makeDraggable(element) {
             return
         }
         isCardMoving = true;
+
+        if (selectedCards.length === 0){
+            selectedCards = [element];
+            element.style.border = "3px solid red";
+
+        }
+
         const scale = getScale();
 
-        offsetX = (e.clientX / scale) - element.offsetLeft;
-        offsetY = (e.clientY / scale) - element.offsetTop;
+        selectedCards.forEach(card => {
+            card.dataset.startX = parseFloat(card.style.left);
+            card.dataset.startY = parseFloat(card.style.top);
+        });
+
+        // Startposition des Hauptelements einmalig speichern
+        dragStartX = parseFloat(element.style.left);
+        dragStartY = parseFloat(element.style.top);
+
+        offsetX = (e.clientX / scale) - dragStartX;
+        offsetY = (e.clientY / scale) - dragStartY;
 
         document.addEventListener("pointermove", drag);
         document.addEventListener("pointerup", stopDrag);
@@ -52,22 +70,33 @@ function makeDraggable(element) {
         let y = (e.clientY / scale) - offsetY;
         x = Math.round(x / GRID_SIZE) * GRID_SIZE;
         y = Math.round(y / GRID_SIZE) * GRID_SIZE;
-        console.log("test ets x koord ")
-
-        checkGridBoundaries(x, y)
 
 
-        console.log(x);
 
-        element.style.left = x + "px";
-        element.style.top = y + "px";
+        selectedCards.forEach(card => {
+            let baseX = parseFloat(card.dataset.startX);
+            let baseY = parseFloat(card.dataset.startY);
+
+            // Delta relativ zur gespeicherten Startposition berechnen
+            let newX = baseX + (x - dragStartX);
+            let newY = baseY + (y - dragStartY);
+
+            checkGridBoundaries(newX, newY);
+
+            card.style.left = newX + "px";
+            card.style.top = newY + "px";
+        });
     }
 
     function stopDrag() {
         document.removeEventListener("pointermove", drag);
         document.removeEventListener("pointerup", stopDrag);
+        selectedCards.forEach(card =>{
+            card.style.border = "solid";
+            sendPosToServer(card)
+        })
         // set the new position in the class
-        sendPosToServer(element);
+        selectedCards = [];
         isCardMoving = false;
     }
 }

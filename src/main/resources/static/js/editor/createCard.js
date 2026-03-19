@@ -54,6 +54,9 @@ function constructPerson() {
 
             //füge das Element (also die Karte) dem CardContainer zu
             document.getElementById("cardContainer").appendChild(card);
+
+            card.style.left = "0px";
+            card.style.top = "0px";
             makeDraggable(card);
 
 
