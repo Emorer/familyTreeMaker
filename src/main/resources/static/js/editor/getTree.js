@@ -32,6 +32,8 @@ function getTree(button){
         .then(response => response.json())
         .then(tree => {
             console.log("Antwort: ", tree);
+            startSVG();
+            //drawConnections();
             tree.forEach(person => {
                 insertPerson(person);
             });
@@ -75,4 +77,9 @@ function insertPerson(person){
     //füge das Element (also die Karte) dem CardContainer zu
     document.getElementById("cardContainer").appendChild(card);
     makeDraggable(card);
+
+    let allCards = getAllCards();
+    allCards.forEach(card =>{
+        checkGridBoundaries(parseInt(card.style.left), parseInt(card.style.top));
+    });
 }

@@ -65,6 +65,9 @@ function makeDraggable(element) {
 
     function drag(e) {
         const scale = getScale();
+        selectedCards.forEach(card => {
+            updateConnections(card);
+        });
 
         let x = (e.clientX / scale) - offsetX;
         let y = (e.clientY / scale) - offsetY;

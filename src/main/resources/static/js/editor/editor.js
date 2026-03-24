@@ -1,5 +1,3 @@
-
-
 const root = document.documentElement;
 let currentTreeID = null; // holds the value of the current tree where we edit i.e integer
 let selectedCard = null;
@@ -15,6 +13,8 @@ let coordHeight = 1000; // y koordinaten
 let coordWidth = 1600;  // x koordinaten
 let isMultiSelect = false;
 let selectedCards = [];
+let Spouses = []; // list of list(tuples)
+let Children = [];
 
 // mach die card optionen aus also
 document.addEventListener("click", () => {

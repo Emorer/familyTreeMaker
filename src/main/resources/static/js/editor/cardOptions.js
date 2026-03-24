@@ -5,11 +5,70 @@ document.getElementById("editForm").addEventListener("submit", function (event){
 function addSpouse(){
 
 }
-
 function connectToSpouse(){
+    const tempLine = document.createElementNS("http://www.w3.org/2000/svg", "polyline");
+    tempLine.setAttribute("stroke", "black");
+    tempLine.setAttribute("fill", "none");
+    cardContainer.querySelector("svg").appendChild(tempLine);
 
+    document.addEventListener("pointermove", startLineSpouse);
+    document.addEventListener("pointerdown", spouseSelected);
 
+    const point = getCardCenter(selectedCard);
 
+    function startLineSpouse(e){
+        const secondPoint = getScreenCoordFromWorld(e);
+        tempLine.setAttribute("points", `${point.x},${point.y} ${secondPoint.x},${secondPoint.y}`);
+    }
+
+    function spouseSelected(e){
+        tempLine.remove(); // temporäre Linie immer entfernen
+        const targetCard = checkIfSpouseWithin(e);
+        if (targetCard) {
+            Spouses.push(new SpouseConnection(selectedCard, targetCard)); // fertige Verbindung erstellen
+        }
+
+        document.removeEventListener("pointermove", startLineSpouse);
+        document.removeEventListener("pointerdown", spouseSelected);
+        selectedCard = null;
+    }
+}
+
+function checkIfSpouseWithin(e){
+    const element = document.elementFromPoint(e.clientX, e.clientY);
+    console.log(element);
+    const card = element.closest(".card");
+
+    if (!card) return null;
+    if (card === selectedCard) return null;
+
+    return card;
+}
+// takes the spouseConn as input
+function connectToChild(spouseConn){
+    const tempLine = document.createElementNS("http://www.w3.org/2000/svg", "polyline");
+    tempLine.setAttribute("stroke", "black");
+    tempLine.setAttribute("fill", "none");
+    cardContainer.querySelector("svg").appendChild(tempLine);
+
+    document.addEventListener("pointermove", startChildConnection);
+    document.addEventListener("pointerdown", childSelected);
+
+    function startChildConnection(e){
+        const secondPoint = getScreenCoordFromWorld(e);
+        tempLine.setAttribute("points", `${spouseConn.circleX},${spouseConn.circleY} ${secondPoint.x},${secondPoint.y}`);
+    }
+
+    function childSelected(e){
+        tempLine.remove();
+        const targetCard = checkIfSpouseWithin(e); // kannst du wiederverwenden
+        if (targetCard) {
+            Children.push(new ParentToChildConn(spouseConn, targetCard));
+        }
+        document.removeEventListener("pointermove", startChildConnection);
+        document.removeEventListener("pointerdown", childSelected);
+        selectedCard = null;
+    }
 }
 function connectToParent(){
 

@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<div class="formPopup" id="editForm">
+<div class="editFormPopup" id="editForm">
     <form class="editFormContainer">
         <label>Name</label>
         <input  type="text" name="name"required>
@@ -59,6 +59,7 @@
 
             </div><br>
             <button onclick="openNewPersonForm()">New Person</button> <br>
+            <button onclick="testconnections()">testSvg</button> <br>
             <a href="#">Data Analysis</a><br>
             <a href="#">Map</a><br>
             <a href="#">Export</a><br>
@@ -81,8 +82,11 @@
                     <button type="submit">Create Person</button>
                 </form>
             </div>
-            <div class="coord" id="cardContainer"> <!--koordinaten system --></div>
+            <div class="coord" id="cardContainer"> <!--koordinaten system -->
+
+            </div>
             <div class="multiBox" id="multiBox"></div>
+
 
         </div>
 
@@ -107,6 +111,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.26.22/dist/sweetalert2.min.css
     <script th:src="@{/js/editor/databasePosition.js}"></script>
     <script th:src="@{/js/editor/treeOptions.js}"></script>
     <script th:src="@{/js/editor/multiselect.js}"></script>
+    <script th:src="@{/js/editor/connections.js}"></script>
 
     <script th:inline="javascript">
         /*<![CDATA[*/
