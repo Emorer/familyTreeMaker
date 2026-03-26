@@ -13,8 +13,7 @@ function getTree(button){
         setCurrentTreeID(treeId)
     }
 
-
-
+    highlightTree(button);
     document.getElementById("cardContainer").innerHTML = "";
 
 
@@ -83,4 +82,9 @@ function insertPerson(person){
     allCards.forEach(card =>{
         checkGridBoundaries(parseInt(card.style.left), parseInt(card.style.top));
     });
+}
+
+function highlightTree(button){
+    document.querySelectorAll(".tree button").forEach(b => b.style.color = "");
+    button.style.color = "red"
 }
