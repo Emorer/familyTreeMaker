@@ -12,6 +12,7 @@ public class Tree {
     private int id;
     private String name;
     private float created_at;
+    private String owneruid;
 
     public Tree() {
 
