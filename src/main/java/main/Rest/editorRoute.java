@@ -82,7 +82,7 @@ public class editorRoute{
     @PostMapping("/editor")
     @ResponseBody
     public int handle(@RequestBody Person person) {// füge die erstellte Person hinzu
-        idCounter = personRepository.getMaxId();
+        idCounter = personRepository.getMaxId() + 1 ;
         person.setId(idCounter);
 
         //System.out.println("Pos der neu hinzugefügten Perosn sollte 0 sein: " + person.getPosX());
@@ -99,7 +99,7 @@ public class editorRoute{
     @ResponseBody
     public int createNewTree(@RequestBody Tree tree, @CookieValue("user_uuid") String uuid){
 
-        treeIDCounter = personRepository.getMaxTreeId();
+        treeIDCounter = personRepository.getMaxTreeId() + 1;
         tree.setId(treeIDCounter);
 
         personRepository.InsertTree(tree, uuid);
