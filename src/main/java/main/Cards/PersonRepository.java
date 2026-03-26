@@ -3,7 +3,9 @@ package main.Cards;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Array;
 import java.util.List;
+import java.util.Map;
 
 import static org.hibernate.sql.ast.Clause.INSERT;
 import static org.hibernate.sql.ast.Clause.UPDATE;
@@ -93,16 +95,36 @@ public class PersonRepository {
 
 
     }
-    public void deleteCard(int id) {
+    public void deleteCard(int id, int treeid, boolean flag) {
 
         String sql = "DELETE FROM test WHERE id = ?";
         jdbcTemplate.update(sql, id);
+        deleteConnections(id, treeid, flag);
+    }
+
+    public void deleteConnections(int id,int treeid, boolean flag) {
+        String sql = "DELETE FROM connections WHERE firstspouse = ? OR secondspouse = ?";
+        jdbcTemplate.update(sql, id, id);
+        System.out.println(flag + " the bool flag");
+        if(flag) {
+            deleteChildConnection(id, treeid);
+        }
+    }
+    public void deleteChildConnection(int id, int treeid) {
+        String sql = "UPDATE connections SET children = array_remove(children, ?) WHERE treeid = ?";
+        jdbcTemplate.update(sql, id, treeid);
     }
 
     public void deleteTree(int treeId) {
         String sql = "DELETE FROM trees WHERE id = ?";
         jdbcTemplate.update(sql, treeId);
         deleteAllCardsFromTree(treeId);
+        deleteWholeTreeConnections(treeId);
+    }
+
+    public void deleteWholeTreeConnections(int treeId) {
+        String sql = "DELETE FROM connections WHERE treeid = ?";
+        jdbcTemplate.update(sql, treeId);
     }
 
     public void deleteAllCardsFromTree(int treeId) {
@@ -137,6 +159,57 @@ public class PersonRepository {
                 person.getPosY(),
                 person.getId());
     }
+
+    /// //////////////////////////////////////////////////////
+    /// Connections //////////////////////////////////////////
+    /// //////////////////////////////////////////////////////
+
+    public void InsertSpouseConn(Map<String, Integer> spouseConn) {
+        String sql = "Insert INTO connections (firstspouse, secondspouse, treeid) VALUES (?, ?, ?)";
+
+        jdbcTemplate.update(
+                sql,
+                spouseConn.get("fromId"),
+                spouseConn.get("toId"),
+                spouseConn.get("treeId")
+        );
+
+    }
+    public void UpdateChildConn(Map<String, Integer> childConn) {
+
+        String sql = "UPDATE connections SET children = array_append(children, ?) WHERE firstspouse = ? AND secondspouse = ?";
+
+        jdbcTemplate.update(
+                sql,
+                childConn.get("childId"),
+                childConn.get("fromId"),
+                childConn.get("toId")
+
+        );
+
+    }
+
+    // get all connections
+    // hol alle Personen in der Datenbank
+    public List<Connections> findAllConnections(int treeID) { // alle Dokumente Finden. sollte man am starten ausführen um alle Daten zu fetchen
+        String sql = "SELECT firstSpouse, secondspouse, children FROM connections WHERE treeid = ?";
+
+        return jdbcTemplate.query(
+                sql,
+                (rs, rowNum) ->{
+                    Connections p = new Connections();
+                    p.setFirstSpouse(rs.getInt("firstspouse"));
+                    p.setSecondSpouse(rs.getInt("secondspouse"));
+                    Array sqlArray = rs.getArray("children");
+                    p.setChildren(sqlArray != null ? (Integer[]) sqlArray.getArray() : new Integer[]{});
+
+
+                    return p;
+                },
+                treeID
+        );
+    }
+
     // hol die aktuell Maximale Id in der Datenbank
     public int  getMaxId(){
         String sql = "SELECT MAX(id) FROM test";

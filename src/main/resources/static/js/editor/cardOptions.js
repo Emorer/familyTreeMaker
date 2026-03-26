@@ -2,9 +2,8 @@ document.getElementById("editForm").addEventListener("submit", function (event){
     event.preventDefault();
     editCard();
 })
-function addSpouse(){
 
-}
+
 function connectToSpouse(){
     const tempLine = document.createElementNS("http://www.w3.org/2000/svg", "polyline");
     tempLine.setAttribute("stroke", "black");
@@ -24,8 +23,14 @@ function connectToSpouse(){
     function spouseSelected(e){
         tempLine.remove(); // temporäre Linie immer entfernen
         const targetCard = checkIfSpouseWithin(e);
+        // todo check if already connected
         if (targetCard) {
-            Spouses.push(new SpouseConnection(selectedCard, targetCard)); // fertige Verbindung erstellen
+            if (!isSpouse( selectedCard, targetCard)){
+                spouseconnection = new SpouseConnection(selectedCard, targetCard);
+                Spouses.push(spouseconnection); // fertige Verbindung erstellen
+                saveConnections(spouseconnection)
+            }
+
         }
 
         document.removeEventListener("pointermove", startLineSpouse);
@@ -63,7 +68,11 @@ function connectToChild(spouseConn){
         tempLine.remove();
         const targetCard = checkIfSpouseWithin(e); // kannst du wiederverwenden
         if (targetCard) {
-            Children.push(new ParentToChildConn(spouseConn, targetCard));
+            if(!isChild(targetCard, spouseConn)){
+                parentChildConn = new ParentToChildConn(spouseConn, targetCard);
+                Children.push(parentChildConn);
+                saveChildConnection(parentChildConn);
+            }
         }
         document.removeEventListener("pointermove", startChildConnection);
         document.removeEventListener("pointerdown", childSelected);
@@ -145,10 +154,13 @@ function abortEditPerson(){
 
 function deleteCard() {
     if (selectedCard) {
+        let flag = removeConnections(selectedCard);
         selectedCard.remove();
 
         const data = {
             id: parseInt(selectedCard.id),
+            isChildConn: flag,
+            treeId: currentTreeID
         };
         fetch("/deleteCard", {
             method: "PUT",

@@ -37,6 +37,7 @@ function getTree(button){
             tree.forEach(person => {
                 insertPerson(person);
             });
+            getConnections();
 
         })
 

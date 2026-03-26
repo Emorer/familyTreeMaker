@@ -2,6 +2,7 @@ package main.Rest;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import main.Cards.Connections;
 import main.Cards.PersonRepository;
 import main.Cards.Tree;
 import org.springframework.ui.Model;
@@ -130,7 +131,10 @@ public class editorRoute{
         int id   = (Integer) card.get("id");
         allPersons.remove(id);
 
-        personRepository.deleteCard(id);
+        boolean flag = (boolean) card.get("isChildConn");
+        int treeid = Integer.parseInt(card.get("treeId").toString());
+
+        personRepository.deleteCard(id, treeid, flag);
 
 
         return  "ok";
@@ -175,6 +179,51 @@ public class editorRoute{
 
 
         return wholeTree;
+    }
+
+    ////////////////////////////////////////////////
+    /// connections/////////////
+    /// ////////////////////////////////////////
+    // sets the Position of a card in the class not in the database
+    @PutMapping("/addSpouseConn")
+    @ResponseBody
+    public String addSpouseConn(@RequestBody  Map<String, Integer> spouseConn){
+        personRepository.InsertSpouseConn(spouseConn);
+
+        return  "ok";
+    }
+
+    @PutMapping("/addChildConn")
+    @ResponseBody
+    public String addChildConn(@RequestBody  Map<String, Integer> childConn){
+        personRepository.UpdateChildConn(childConn);
+
+        return  "ok";
+    }
+
+    @PutMapping("/getConnections")
+    @ResponseBody
+    public List<Connections> getConnection(@RequestBody Connections connections){
+
+        int treeID = connections.getTreeId();
+        //set database table
+        List<Connections> wholeConnections = personRepository.findAllConnections(treeID);
+
+
+
+        return wholeConnections;
+    }
+    @PutMapping("/deleteSpouseConn")
+    @ResponseBody
+    public String deleteSpouseConn(@RequestBody  Map<String, Integer> spouseConn){
+        personRepository.deleteConnections(spouseConn.get("fromId"), spouseConn.get("treeId"), false);
+        return "ok";
+    }
+    @PutMapping("/deleteChildConn")
+    @ResponseBody
+    public String deleteChildConn(@RequestBody  Map<String, Integer> childConn){
+        personRepository.deleteChildConnection(childConn.get("childId"), childConn.get("treeId"));
+        return "ok";
     }
 
 
