@@ -11,15 +11,15 @@
 <div class="editFormPopup" id="editForm">
     <form class="editFormContainer">
         <label>Name</label>
-        <input  type="text" name="name"required>
+        <input  type="text" name="name" autocomplete="off" required>
         <label>Surname</label>
-        <input type="text" name="surname" required>
+        <input type="text" name="surname" autocomplete="off" required>
         <label>Age</label>
-        <input  type="number" name="age" required>
+        <input  type="number" name="age" autocomplete="off" required>
         <label>Birthyear</label>
-        <input  type="number" name="birthyear" required>
+        <input  type="number" name="birthyear" autocomplete="off" required>
         <label>Place of Birth</label>
-        <input type="text" name="place" required>
+        <input type="text" name="place" autocomplete="off" required>
         <button type="button" class="btn cancel" onclick="abortEditPerson()">Cancel</button>
         <button type="submit">Save Changes</button>
     </form>
@@ -32,17 +32,20 @@
     </div>
     <div class="container">
         <div class="header">
+            <span class="header-title">🌳 FamilyTree </span>
             <div class="topbar">
                 <a th:href="@{/homepage}">Homepage</a>
                 <a th:href="@{/editor}">Editor</a>
+                <a th:href="@{/help}">Help</a>
             </div>
+
         </div>
         <div class="menu">
             <div class="navbarTree" id="navbarTree">
                 <div class="treeForm" id="treeForm">
                     <form class="treeFormContainer">
                         <label>Tree name</label>
-                        <input id="treeName" type="text" name="name" required>
+                        <input id="treeName" type="text" name="name" autocomplete="off" required>
 
                         <button type="button" class="btn cancel" onclick="abortNewTree()">Abort</button>
                         <button type="submit">Create Tree</button>
@@ -67,15 +70,15 @@
             <div class="formPopup" id="constructForm">
                 <form class="formContainer">
                     <label>Name</label>
-                    <input id="name" type="text" name="name"required>
+                    <input id="name" type="text" name="name" autocomplete="off" required>
                     <label>Surname</label>
-                    <input id="surname" type="text" name="surname" required>
+                    <input id="surname" type="text" name="surname" autocomplete="off" required >
                     <label>Age</label>
-                    <input id="age" type="number" name="age" required>
+                    <input id="age" type="number" name="age" autocomplete="off" required >
                     <label>Birthyear</label>
-                    <input id="birthyear" type="number" name="birthyear" required>
+                    <input id="birthyear" type="number" name="birthyear" autocomplete="off" required>
                     <label>Place of Birth</label>
-                    <input id="place" type="text" name="place" required>
+                    <input id="place" type="text" name="place" autocomplete="off" required>
                     <button type="button" class="btn cancel" onclick="abortNewPerson()">Abort</button>
                     <button type="submit">Create Person</button>
                 </form>

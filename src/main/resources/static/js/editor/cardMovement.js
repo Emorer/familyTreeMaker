@@ -34,6 +34,7 @@ function makeDraggable(element) {
 
     function startDrag(e) {
         e.preventDefault();
+
         if (e.button !== 0){
             return
         }
@@ -94,6 +95,7 @@ function makeDraggable(element) {
     function stopDrag() {
         document.removeEventListener("pointermove", drag);
         document.removeEventListener("pointerup", stopDrag);
+        cardContainer.removeEventListener("pointerdown", unSelectAllCards);
         selectedCards.forEach(card =>{
             card.style.border = "solid";
             sendPosToServer(card)

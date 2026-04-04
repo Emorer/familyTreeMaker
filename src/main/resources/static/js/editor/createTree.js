@@ -39,6 +39,8 @@ function addHTMLElement(name, id){
 
     cardContainer.innerHTML = "";
 
+
+
 }
 
 function sendTreeToServer(treeName){
@@ -61,6 +63,8 @@ function sendTreeToServer(treeName){
             treeId = parseInt(data);
             setCurrentTreeID(treeId);
             addHTMLElement(treeName, treeId);
+            const button = document.querySelector(`.tree[data-tree-id="${treeId}"] button`);
+            highlightTree(button);
 
         })
         .catch(err => console.error(err));

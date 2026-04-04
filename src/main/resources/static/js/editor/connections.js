@@ -25,6 +25,8 @@ class SpouseConnection {
         this.circle.setAttribute("fill", "black");
         this.circle.setAttribute("pointer-events", "all");
         this.circle.style.cursor = "grabbing";
+        this.circle.classList.add("connection-circle");
+        this.circle._instance = this; // Referenz auf die Klasse speichern
 
         this.circle.addEventListener("click", () => this.onClick());
 
@@ -64,7 +66,10 @@ class SpouseConnection {
     }
 
     onClick() {
-        connectToChild(this);
+        if(!isConnecting){
+            connectToChild(this);
+        }
+
         //console.log("connection clicked:", this.fromId, this.toId);
     }
     delete(){

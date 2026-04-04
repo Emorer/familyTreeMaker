@@ -1,4 +1,6 @@
 cardContainer.addEventListener("pointerdown", startMultiselect)
+
+
 const multibox = document.getElementById("multiBox");
 
 function startMultiselect(event){
@@ -52,6 +54,8 @@ function startMultiselect(event){
         multibox.style.height = "0px";
         multibox.style.display = "none";
 
+        cardContainer.addEventListener("pointerdown" , unSelectAllCards);
+
 
     }
     //root.style.setProperty("----multiboxWidth", 100 + "px");
@@ -95,4 +99,24 @@ function checkIfCardCollidesWithSelectBox(allCards, startX, currentX, startY, cu
 
     });
 
+}
+// for movement
+function unSelectAllCards(e){
+    // check if right cklick
+    if( e.button === 2){
+        return
+    }
+    // check if  clicked on card
+    if(e.target.closest(".card")){
+        return;
+    }
+    // chech if no cards selected
+    if(selectedCards.length === 0){
+        return;
+    }
+    selectedCards.forEach(card =>{
+       card.style.border = "solid";
+
+    });
+    selectedCards = [];
 }

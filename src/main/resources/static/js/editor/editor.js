@@ -15,11 +15,14 @@ let isMultiSelect = false;
 let selectedCards = [];
 let Spouses = []; // list of list(tuples)
 let Children = [];
+let isConnecting = false;
 
 // mach die card optionen aus also
 document.addEventListener("click", () => {
     cardOption.style.display = "none";
 });
+
+
 
 
 

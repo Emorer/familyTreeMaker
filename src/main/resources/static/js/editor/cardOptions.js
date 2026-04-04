@@ -4,6 +4,8 @@ document.getElementById("editForm").addEventListener("submit", function (event){
 })
 
 
+
+
 function connectToSpouse(){
     const tempLine = document.createElementNS("http://www.w3.org/2000/svg", "polyline");
     tempLine.setAttribute("stroke", "black");
@@ -66,7 +68,7 @@ function connectToChild(spouseConn){
 
     function childSelected(e){
         tempLine.remove();
-        const targetCard = checkIfSpouseWithin(e); // kannst du wiederverwenden
+        const targetCard = checkIfSpouseWithin(e); //
         if (targetCard) {
             if(!isChild(targetCard, spouseConn)){
                 parentChildConn = new ParentToChildConn(spouseConn, targetCard);
@@ -80,9 +82,49 @@ function connectToChild(spouseConn){
     }
 }
 function connectToParent(){
+    isConnecting = true;
+    const tempLine = document.createElementNS("http://www.w3.org/2000/svg", "polyline");
+    tempLine.setAttribute("stroke", "black");
+    tempLine.setAttribute("fill", "none");
+    cardContainer.querySelector("svg").appendChild(tempLine);
 
+    document.addEventListener("pointermove", startLineParent);
+    document.addEventListener("pointerdown", parentSelected);
+
+    const point = getCardCenter(selectedCard);
+
+    function startLineParent(e){
+        const secondPoint = getScreenCoordFromWorld(e);
+        tempLine.setAttribute("points", `${point.x},${point.y} ${secondPoint.x},${secondPoint.y}`);
+    }
+    function parentSelected(e){
+        tempLine.remove();
+        const circle = checkIfWithinSpouseCircle(e);
+        thisSpouseConn = circle._instance;
+        if(circle){
+            if(!isChild(selectedCard, thisSpouseConn)){
+                parentChildConn = new ParentToChildConn(thisSpouseConn, selectedCard);
+                Children.push(parentChildConn);
+                saveChildConnection(parentChildConn);
+            }
+        }
+        document.removeEventListener("pointermove", startLineParent);
+        document.removeEventListener("pointerdown", parentSelected);
+        selectedCard = null;
+        isConnecting = false;
+
+    }
 }
 
+function checkIfWithinSpouseCircle(e){
+    const element = document.elementFromPoint(e.clientX, e.clientY);
+    const circle = element.closest(".connection-circle");
+
+    if (!circle) return null;
+
+    return circle;
+
+}
 
 function openEditForm(){
     document.getElementById("editForm").style.display = "block";
