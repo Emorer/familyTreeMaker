@@ -59,11 +59,16 @@
                 </div>
 
 
+
             </div><br>
-            <button onclick="openNewPersonForm()">New Person</button> <br>
-            <a href="#">Data Analysis</a><br>
-            <a href="#">Map</a><br>
-            <a href="#">Export</a><br>
+            <div class="divider"></div>
+            <div class ="newPerson">
+                <button onclick="openNewPersonForm()">New Person</button> <br>
+                <button onclick="exportToPDF()">Export to PDF</button>
+                <button>Map (in Development)</button>
+            </div>
+
+
 
         </div>
         <div class="content">
@@ -91,11 +96,17 @@
 
         </div>
 
-        <div class="footer"><h4>Footer</h4></div>
+        <div class="footer"><h4>Footer</h4>
+                <a href="https://www.linkedin.com/in/ziad-el-jomaa-6b2a98300" target="_blank">
+                    <i class="fa-brands fa-linkedin"></i>
+                    linkedin
+                </a>
+        </div>
     </div>
 
 
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="
 https://cdn.jsdelivr.net/npm/sweetalert2@11.26.22/dist/sweetalert2.all.min.js
 "></script>
@@ -114,6 +125,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.26.22/dist/sweetalert2.min.css
     <script th:src="@{/js/editor/multiselect.js}"></script>
     <script th:src="@{/js/editor/connections.js}"></script>
     <script th:src="@{/js/editor/getConnections.js}"></script>
+<script th:src="@{/js/editor/export.js}"></script>
 
     <script th:inline="javascript">
         /*<![CDATA[*/

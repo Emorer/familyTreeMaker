@@ -100,12 +100,14 @@ public class PersonRepository {
 
         String sql = "DELETE FROM test WHERE id = ?";
         jdbcTemplate.update(sql, id);
-        deleteConnections(id, treeid, flag);
+        // zweimal die gleiche wiel wir ja alle connections der karte löschen müssen
+        deleteConnections(id, id , treeid, flag);
     }
 
-    public void deleteConnections(int id,int treeid, boolean flag) {
+    // wenn man nur die connection löscht dann nur nach der spezifischen connections suchen
+    public void deleteConnections(int id, int toID, int treeid, boolean flag) {
         String sql = "DELETE FROM connections WHERE firstspouse = ? OR secondspouse = ?";
-        jdbcTemplate.update(sql, id, id);
+        jdbcTemplate.update(sql, id, toID);
         System.out.println(flag + " the bool flag");
         if(flag) {
             deleteChildConnection(id, treeid);

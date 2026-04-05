@@ -38,10 +38,6 @@ body {
 
 .editFormPopup{
     display: none;
-    background: beige;
-    border:  3px black;
-    border-style: solid;
-    border-radius: 8px;
     position: fixed;
     max-width: 100vw;
     max-height: 100dvh;
@@ -51,12 +47,32 @@ body {
     height: 150px;
     padding: 5px;
     z-index: 10;
+    background: #F4FAF1;  /* old beige */
+    border: 1px solid #000000;
+    border-radius: 12px;
+    border-left: 3px solid #2D6A1F;
+
+
+    font-size: 11px;
 }
 
 .editFormPopup .editFormContainer {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 5px 10px;
+
+}
+
+.editFormPopup .editFormContainer button {
+    border-radius: 8px;
+    border-color: #f9f9f9;
+    color: rgba(0, 0, 0, 0.85);
+    transition: all 0.2s ease-in-out;
+
+}
+
+.editFormPopup .editFormContainer button:hover {
+    background: rgba(255, 255, 255, 0.25);
 
 }
 
@@ -128,25 +144,95 @@ body {
 /* Menu */
 .container div.menu {
     grid-area: menu;
-    border-style: dashed;
-    background: linear-gradient(to bottom, #255925, #357a35, #4a9e4a, #C29B6C, #947352, #704F38, #52392F);
+    border-style: none;
+    background: linear-gradient(to bottom, #255925 0%, #357a35 25%, #4a9e4a 65%, #7B853A 75%, #947352, #704F38 100%);
 
 }
 
 .container .menu .navbarTree{
-    padding: 5px;
-    border: black;
-    border-style: solid;
+    padding: 8px;
+    border-radius: 20px;
+    border-top-style: solid;
+    gap: 10px;
+
 
 }
 
+.treeFormContainer{
+    display: none;
+    position: fixed;
+
+    width: 350px;
+    padding: 5px;
+    z-index: 10;
+    background: #F4FAF1;  /* old beige */
+    border: 1px solid #000000;
+    border-radius: 12px;
+    border-left: 3px solid #2D6A1F;
+    font-size: 18px;
+}
+
+
+.container .menu .navbarTree .treeFormContainer button{
+    padding: 5px;
+    border-radius: 8px;
+    border-color: #000000;
+    color: rgba(0, 0, 0, 0.85);
+    transition: all 0.2s ease-in-out;
+    font-size: 15px;
+}
+
+.container .menu .navbarTree .treeFormContainer button:hover{
+    background: rgba(198, 190, 190, 0.25);
+}
 .container .menu .navbarTree button{
     border: none;
     color: #000000;
+    transition: all 0.2s ease-in-out;
+    width: 100%;
+    text-align: left;
+    padding: 7px 10px;
+    border-radius: 8px;
+    background: transparent;
+    color: rgba(255,255,255,0.85);
+    font-size: 12px;
+    cursor: pointer;
+
 }
 .container .menu .navbarTree button:hover{
-    background: #756565;
+    background: rgba(255, 255, 255, 0.25);
 }
+
+.divider {
+    height: 1px;
+    background: rgba(255,255,255,0.12);
+    margin: 4px 0;
+}
+
+.container .menu .newPerson{
+    padding: 8px;
+    border-radius: 20px;
+    gap: 10px;
+}
+
+.container .menu .newPerson button{
+    border: none;
+    color: #000000;
+    transition: all 0.2s ease-in-out;
+    width: 100%;
+    text-align: left;
+    padding: 7px 10px;
+    border-radius: 8px;
+    background: transparent;
+    color: rgba(255,255,255,0.85);
+    font-size: 12px;
+    cursor: pointer;
+}
+.container .menu .newPerson button:hover{
+    background: rgba(255, 255, 255, 0.25);
+}
+
+
 
 .container .menu .navbarTree .treeForm {
     display: none;
@@ -167,28 +253,35 @@ body {
 }
 
 
+
 /*Content Abschnitt*/
 .container div.content {
     grid-area: content;
-    border-style: dashed;
+    border-style: none;
     overflow: auto;
     position: relative;
-    background: rgba(116, 191, 116, 0.25);
+
+    /*background: rgba(116, 191, 116, 0.25);*/
 
 }
 
 .container .content .formPopup{
     display: none;
-    background: beige;
-    border:  3px black;
-    border-style: solid;
-    border-radius: 8px;
     position: fixed;
     bottom: 50px;
     right: 60px;
     width: 280px;
     padding: 5px;
     z-index: 10;
+
+    background: #F4FAF1;  /* old beige */
+    border: 1px solid #000000;
+    border-radius: 12px;
+    border-left: 3px solid #2D6A1F;
+
+
+    font-size: 11px;
+
 }
 
 .container .content .formPopup .formContainer {
@@ -197,6 +290,20 @@ body {
     gap: 5px 10px;
 
 }
+.container .content .formPopup .formContainer button{
+    padding: 5px;
+    border-radius: 8px;
+    border-color: #f9f9f9;
+    color: rgba(0, 0, 0, 0.85);
+    transition: all 0.2s ease-in-out;
+
+}
+
+.container .content .formPopup .formContainer button:hover{
+    background: rgba(255, 255, 255, 0.25);
+
+}
+
 .container .content .coord {
     height: var(--coordHeight); /* das als variablen ersetzen */
     width: var(--coordWidth);
@@ -253,6 +360,7 @@ body {
     font-size: 11px;
     z-index: 3;
 
+
     border-left: 3px solid #2D6A1F;
 
 }
@@ -279,8 +387,10 @@ body {
 .container div.footer {
     grid-area: footer;
     text-align: center;
-    border-style: dashed;
-    background: #52392F;
+    border-style: solid;
+    height: 100px;
+    background: linear-gradient(to bottom, #704F38, #52392F)
+
 }
 
 

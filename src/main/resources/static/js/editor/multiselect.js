@@ -93,7 +93,7 @@ function checkIfCardCollidesWithSelectBox(allCards, startX, currentX, startY, cu
             cardBottom > selectTop &&
             cardTop < selectBottom
         ) {
-            card.style.border = "3px solid red"; //
+            card.style.border = "1px solid #fb4955"; //
             selectedCards.push(card);
         }
 
@@ -115,7 +115,8 @@ function unSelectAllCards(e){
         return;
     }
     selectedCards.forEach(card =>{
-       card.style.border = "solid";
+        card.style.border = "1px solid #C8DFB8";
+        card.style.borderLeft = "3px solid #2D6A1F";
 
     });
     selectedCards = [];

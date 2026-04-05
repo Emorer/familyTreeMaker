@@ -42,7 +42,7 @@ function makeDraggable(element) {
 
         if (selectedCards.length === 0){
             selectedCards = [element];
-            element.style.border = "3px solid red";
+            element.style.border = "1px solid #fb4955";
 
         }
 
@@ -97,7 +97,8 @@ function makeDraggable(element) {
         document.removeEventListener("pointerup", stopDrag);
         cardContainer.removeEventListener("pointerdown", unSelectAllCards);
         selectedCards.forEach(card =>{
-            card.style.border = "solid";
+            card.style.border = "1px solid #C8DFB8";
+            card.style.borderLeft = "3px solid #2D6A1F";
             sendPosToServer(card)
         })
         // set the new position in the class

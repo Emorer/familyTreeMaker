@@ -229,7 +229,7 @@ public class editorRoute{
     @PutMapping("/deleteSpouseConn")
     @ResponseBody
     public String deleteSpouseConn(@RequestBody  Map<String, Integer> spouseConn){
-        personRepository.deleteConnections(spouseConn.get("fromId"), spouseConn.get("treeId"), false);
+        personRepository.deleteConnections(spouseConn.get("fromId"),spouseConn.get("toId"), spouseConn.get("treeId"), false);
         return "ok";
     }
     @PutMapping("/deleteChildConn")
