@@ -145,7 +145,7 @@ body {
 .container div.menu {
     grid-area: menu;
     border-style: none;
-    background: linear-gradient(to bottom, #255925 0%, #357a35 25%, #4a9e4a 65%, #7B853A 75%, #947352, #704F38 100%);
+    background: linear-gradient(to bottom, #255925 0%, #357a35 25%, #4a9e4a 65%, #7B853A 75%, #947352 100%);
 
 }
 
@@ -386,11 +386,62 @@ body {
     /*/////// footer ///////*/
 .container div.footer {
     grid-area: footer;
-    text-align: center;
-    border-style: solid;
+    border-style: none;
     height: 100px;
-    background: linear-gradient(to bottom, #704F38, #52392F)
+    background: linear-gradient(to bottom, #947352, #704F38);
 
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+
+}
+
+.container .footer .footer-left {
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+    margin-left: auto;
+}
+.container .footer .footer-left span {
+    color: rgba(255,255,255,0.9);
+    font-weight: 500;
+}
+.container .footer .footer-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-right: auto;
+}
+.container .footer .footer-right a {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    padding: 5px 12px;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 20px;
+    transition: all 0.15s;
+}
+.container .footer .footer-right a:hover {
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+    border-color: rgba(255,255,255,0.35);
+}
+.container .footer .dot {
+    color: rgba(255,255,255,0.2);
+    font-size: 14px;
+}
+.container .footer .li-icon {
+    width: 14px; height: 14px;
+    background: #0A66C2;
+    border-radius: 3px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 9px; font-weight: 700; color: white;
+    flex-shrink: 0;
 }
 
 

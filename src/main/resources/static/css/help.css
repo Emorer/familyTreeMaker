@@ -7,9 +7,9 @@ body {
     display: grid;
     grid-template-areas:
     "header header"
-    "conten content"
+    "content content"
     "footer footer";
-    grid-template-columns:  5fr;
+    grid-template-columns: 5fr;
     background-color: white;
 
 }
@@ -64,27 +64,96 @@ body {
     color: #ffffff;
 }
 
-.container .content .hero {
-    background: linear-gradient(160deg, #f4faf1 0%, #e8f5e2 60%, #d6edd0 100%);
-    padding: 56px 24px 48px;
-    text-align: center;
+
+.content {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+}
+
+.page-title {
+    font-size: 26px;
+    font-weight: 800;
+    color: #1A3A12;
+    margin-bottom: 6px;
+}
+.page-sub {
+    font-size: 13px;
+    color: #4E7A42;
+    margin-bottom: 40px;
+}
+
+/* Section */
+.section {
+    margin-bottom:
+            36px;
+}
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
     border-bottom: 1px solid #C8DFB8;
-    height: 452px;
 }
-.container .content .hero-tag {
-    display: inline-block; background: #d6edd0; color: #2D6A1F;
-    font-size: 11px; font-weight: 500; padding: 3px 12px;
-    border-radius: 20px; margin-bottom: 16px; border: 1px solid #C8DFB8;
+.section-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: #2D6A1F;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
 }
-.container .content .hero h1 { font-size: 32px; font-weight: 800; color: #1A3A12; margin-bottom: 12px; line-height: 1.2; }
-.container .content .hero p { font-size: 14px; color: #4E7A42; max-width: 420px; margin: 0 auto 28px; line-height: 1.6; }
-.container .content .hero-btn {
-    display: inline-block; background: #2D6A1F; color: #fff;
-    font-size: 14px; font-weight: 600; padding: 11px 28px;
-    border-radius: 99px; text-decoration: none; transition: all 0.15s;
-    border: none; cursor: pointer;
+.section-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1A3A12;
 }
-.container .content .hero-btn:hover { background: #255925; }
+
+/* Steps */
+.steps {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.step {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    background: #F4FAF1;
+    border: 1px solid #C8DFB8;
+    border-left: 3px solid #2D6A1F;
+    border-radius: 10px;
+    padding: 12px 14px;
+}
+.step-num {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #2D6A1F;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+}
+.step-body {}
+.step-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: #1A3A12;
+    margin-bottom: 3px;
+}
+.step-desc {
+    font-size: 11.5px;
+    color: #4E7A42;
+    line-height: 1.5; }
 
 
 

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{/css/help.css}" rel="stylesheet">
+
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <span class="header-title">🌳 FamilyTree </span>
+        <div class="topbar">
+            <a th:href="@{/homepage}">Homepage</a>
+            <a th:href="@{/editor}">Editor</a>
+            <a th:href="@{/help}">Help</a>
+        </div>
+
+    </div>
+
+    <div class ="content">
+        <div class="page-title">Help & Guide</div><br>
+
+        <!-- SECTION 1 -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon">👤</div>
+                <div class="section-title">Creating & editing cards</div>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-num">1</div>
+                    <div class="step-body">
+                        <div class="step-title">Click "New Person" in the sidebar</div>
+                        <div class="step-desc">A form will appear where you can enter the person's name, surname, age, birthyear and place of birth.</div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-num">2</div>
+                    <div class="step-body">
+                        <div class="step-title">Click "Create Person" to add the card</div>
+                        <div class="step-desc">The card will appear on the canvas at position (0, 0). You can then drag it to any position.</div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-num">3</div>
+                    <div class="step-body">
+                        <div class="step-title">Right-click a card to edit or delete it</div>
+                        <div class="step-desc">A context menu appears with the options: Edit Card, Delete Card, Connect to Spouse and Connect to Parent.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 2 -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon">🔗</div>
+                <div class="section-title">Connecting family members</div>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-num">1</div>
+                    <div class="step-body">
+                        <div class="step-title">Spousal Connection</div>
+                        <div class="step-desc">Select "Connect to Spouse" from the menu.</div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-num">2</div>
+                    <div class="step-body">
+                        <div class="step-title">Select the Second Person</div>
+                        <div class="step-desc">Click on the second person's card. A line will appear between the two cards, indicating their spousal relationship.</div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-num">3</div>
+                    <div class="step-body">
+                        <div class="step-title">Add Child Connections</div>
+                        <div class="step-desc">Parent–child relationships can be established in two ways:either select "Connect to Parents" and click on the spousal circle, or left-click on the spousal circle and select the child you want to link.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- SECTION 3 -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon">🗑️</div>
+                <div class="section-title">Deleting Connections</div>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-num">1</div>
+                    <div class="step-body">
+                        <div class="step-title">Remove a Parent–Child Connection</div>
+                        <div class="step-desc">Right-click on the connecting line between a parent and child to delete that specific connection.</div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-num">2</div>
+                    <div class="step-body">
+                        <div class="step-title"> Remove a Spousal Connection</div>
+                        <div class="step-desc">Right-click on the spousal circle to delete the spousal connection along with all associated child connections.</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <div class="footer">
+        <div class="footer-right">
+            <a href="https://www.linkedin.com/in/ziad-el-jomaa-6b2a98300/" target="_blank">
+                <div class="li-icon">in</div>
+            </a>
+            <span class="dot">·</span>
+            <a href="mailto:ziad01@hotmail.de?subject=FamilyTree Bug Report">
+                Report a Bug
+            </a>
+            <span class="dot">·</span>
+            <a href="mailto:ziad01@hotmail.de?subject=FamilyTree Suggestion">
+                Suggestion
+            </a>
+        </div>
+        <div class="footer-left">
+            🌳 Made by <span>Ziad El Jomaa</span>
+        </div>
+    </div>
+
+
+</div>
+
+
+
+
+</body>
+</html>

@@ -18,4 +18,7 @@ public class mainRoute {
         return "test";
     }
 
+    @RequestMapping("/help")
+    public String help(){return "help";}
+
 }

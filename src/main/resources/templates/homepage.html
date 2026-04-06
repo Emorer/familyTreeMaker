@@ -7,15 +7,51 @@
 
 </head>
 <body>
-<div class="topbar">
-    <a th:href="@{/homepage}">Homepage</a>
-    <a th:href="@{/editor}">Editor</a>
-    <a th:href="@{/test}">Test</a>
+<div class="container">
+    <div class="header">
+        <span class="header-title">🌳 FamilyTree </span>
+        <div class="topbar">
+            <a th:href="@{/homepage}">Homepage</a>
+            <a th:href="@{/editor}">Editor</a>
+            <a th:href="@{/help}">Help</a>
+        </div>
+
+    </div>
+
+    <div class ="content">
+        <div class="hero">
+            <div class="hero-tag">Free</div>
+            <h1>Build your family tree<br>visually</h1>
+            <p>Create, connect and explore your family history with a simple editor.</p>
+            <a class="hero-btn" href="/editor">Open Editor →</a>
+        </div>
+    </div>
+
+
+
+    <div class="footer">
+        <div class="footer-right">
+            <a href="https://www.linkedin.com/in/ziad-el-jomaa-6b2a98300/" target="_blank">
+                <div class="li-icon">in</div>
+            </a>
+            <span class="dot">·</span>
+            <a href="mailto:ziad01@hotmail.de?subject=FamilyTree Bug Report">
+                Report a Bug
+            </a>
+            <span class="dot">·</span>
+            <a href="mailto:ziad01@hotmail.de?subject=FamilyTree Suggestion">
+                Suggestion
+            </a>
+        </div>
+        <div class="footer-left">
+            🌳 Made by <span>Ziad El Jomaa</span>
+        </div>
+    </div>
+
+
 </div>
 
 
-
-<h1>Hello world</h1>
 
 
 </body>
