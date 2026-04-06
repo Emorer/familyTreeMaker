@@ -6,6 +6,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 //Controller
 @Controller
 public class mainRoute {
+    @RequestMapping("/")
+    public String deafult() {
+        return "homepage";
+    }
+
     //@GetMapping("/hello")
     @RequestMapping("/homepage")
     public String homepage() {
