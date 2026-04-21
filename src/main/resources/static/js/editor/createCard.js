@@ -77,6 +77,12 @@ function constructPerson() {
 
 
 function openNewPersonForm() {
+    if(currentTreeID === null){
+        Swal.fire({
+            title: "Please select an existing Tree or create a new one before adding persons.",
+        });
+        return
+    }
     document.getElementById("constructForm").style.display = "block";
 }
 
